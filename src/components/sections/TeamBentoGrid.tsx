@@ -72,10 +72,18 @@ const TeamCard = ({
     >
       {/* The Card Wrapper (Expands into a pill) */}
       <div
-        className={`relative w-full bg-[#FAF9F7] flex flex-col ${borderClass} transition-all duration-700 ease-in-out cursor-pointer p-1.5 shadow-xs hover:shadow-xl rounded-t-[1000px] ${
+        className={`relative w-full bg-[#FAF9F7] flex flex-col ${borderClass} transition-all duration-700 ease-in-out cursor-pointer p-1.5 shadow-xs hover:shadow-xl rounded-t-[1000px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A5C24] ${
           isExpanded ? "rounded-b-[1000px] pb-8" : "rounded-b-2xl pb-1.5"
         }`}
+        role="button"
+        tabIndex={0}
         onClick={() => setIsExpanded(!isExpanded)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsExpanded(!isExpanded);
+          }
+        }}
       >
         {/* Image Container */}
         <div
@@ -154,6 +162,18 @@ const BioModal: React.FC<{
   member: TeamMemberProfile | null;
   onClose: () => void;
 }> = ({ member, onClose }) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    if (member) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [member, onClose]);
+
   if (!member) return null;
 
   return (
@@ -164,6 +184,9 @@ const BioModal: React.FC<{
       <div
         className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#FAF9F7] rounded-[28px] border border-black/[0.08] shadow-2xl p-6 sm:p-8 text-[#151914] animate-in zoom-in-95 duration-200 cursor-default custom-modal-scrollbar"
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${member.name} Biography`}
       >
         {/* Close Button */}
         <button
