@@ -5,111 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, FileText, CalendarDays, Clock, ArrowUpRight, KeyRound } from "lucide-react";
 
-// Warm ivory palette
-const GREEN = "#43612B";
-const TEXT  = "#151914";
-const MUTED = "#6B7462";
-
-interface PlotItem {
-  size: string;
-  tag: string;
-  dimensions: string;
-  totalPrice: string;
-  downPayment: string;
-  downPaymentPercent: string;
-  monthly: string;
-  monthlyCount: number;
-  halfYearly: string;
-  halfYearlyCount: number;
-  possession?: string;
-  image: string;
-}
-
-const plots: PlotItem[] = [
-  {
-    size: "05 Marla",
-    tag: "Residential",
-    dimensions: "25 x 50",
-    totalPrice: "2,500,000",
-    downPayment: "625,000",
-    downPaymentPercent: "25%",
-    monthly: "24,500",
-    monthlyCount: 39,
-    halfYearly: "90,000",
-    halfYearlyCount: 8,
-    possession: "200,000",
-    image: "/new assests/our plan assests/card 1.png",
-  },
-  {
-    size: "7.5 Marla",
-    tag: "Residential",
-    dimensions: "30 x 40",
-    totalPrice: "3,600,000",
-    downPayment: "900,000",
-    downPaymentPercent: "25%",
-    monthly: "35,000",
-    monthlyCount: 39,
-    halfYearly: "130,000",
-    halfYearlyCount: 8,
-    possession: "295,000",
-    image: "/new assests/our plan assests/card 2.png",
-  },
-  {
-    size: "10 Marla",
-    tag: "Residential",
-    dimensions: "35 x 70",
-    totalPrice: "4,900,000",
-    downPayment: "1,225,000",
-    downPaymentPercent: "25%",
-    monthly: "48,000",
-    monthlyCount: 39,
-    halfYearly: "175,000",
-    halfYearlyCount: 8,
-    possession: "400,000",
-    image: "/new assests/our plan assests/card 3.png",
-  },
-  {
-    size: "13 Marla",
-    tag: "Residential",
-    dimensions: "40 x 80",
-    totalPrice: "6,400,000",
-    downPayment: "1,600,000",
-    downPaymentPercent: "25%",
-    monthly: "60,000",
-    monthlyCount: 39,
-    halfYearly: "230,000",
-    halfYearlyCount: 8,
-    possession: "620,000",
-    image: "/new assests/our plan assests/card 4.png",
-  },
-  {
-    size: "01 Kanal",
-    tag: "Residential",
-    dimensions: "50 x 100",
-    totalPrice: "10,000,000",
-    downPayment: "2,500,000",
-    downPaymentPercent: "25%",
-    monthly: "98,000",
-    monthlyCount: 39,
-    halfYearly: "360,000",
-    halfYearlyCount: 8,
-    possession: "800,000",
-    image: "/new assests/our plan assests/card 5.png",
-  },
-  {
-    size: "02 Kanal",
-    tag: "Residential",
-    dimensions: "75 x 120",
-    totalPrice: "30,000,000",
-    downPayment: "9,000,000",
-    downPaymentPercent: "30%",
-    monthly: "294,000",
-    monthlyCount: 39,
-    halfYearly: "1,080,000",
-    halfYearlyCount: 8,
-    image: "/new assests/our plan assests/card 6.png",
-  },
-];
+import { plots } from "@/data/plots";
 
 export function PlotCarousel() {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -209,8 +105,7 @@ export function PlotCarousel() {
                 {/* Tag overlay */}
                 <div className="absolute top-3.5 left-3.5 z-10">
                   <span
-                    className="text-white text-[11px] font-semibold px-3 py-1 rounded-[6px]"
-                    style={{ background: GREEN }}
+                    className="text-white text-[11px] font-semibold px-3 py-1 rounded-[6px] bg-forest-green"
                   >
                     {plot.tag}
                   </span>
@@ -232,14 +127,12 @@ export function PlotCarousel() {
                   {/* Size Title & Bold Dimensions */}
                   <div className="flex items-baseline justify-between mb-3">
                     <h3
-                      className="font-display text-[2.1rem] font-bold leading-none tracking-tight"
-                      style={{ color: TEXT }}
+                      className="font-display text-[2.1rem] font-bold leading-none tracking-tight text-charcoal"
                     >
                       {plot.size}
                     </h3>
                     <span
-                      className="font-sans text-base sm:text-lg font-bold tracking-wide"
-                      style={{ color: TEXT }}
+                      className="font-sans text-base sm:text-lg font-bold tracking-wide text-charcoal"
                     >
                       {plot.dimensions}
                     </span>
@@ -248,14 +141,12 @@ export function PlotCarousel() {
                   {/* Total Price */}
                   <div className="mb-4">
                     <p
-                      className="text-[10px] font-semibold uppercase tracking-[0.13em] mb-0.5"
-                      style={{ color: MUTED }}
+                      className="text-[10px] font-semibold uppercase tracking-[0.13em] mb-0.5 text-muted-charcoal"
                     >
                       Total Price
                     </p>
                     <p
-                      className="text-[1.55rem] font-bold leading-tight"
-                      style={{ color: TEXT }}
+                      className="text-[1.55rem] font-bold leading-tight text-charcoal"
                     >
                       Rs {plot.totalPrice}
                     </p>
@@ -274,11 +165,11 @@ export function PlotCarousel() {
                         className="flex items-center justify-between py-2 sm:py-2.5"
                         style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}
                       >
-                        <span className="flex items-center gap-2 font-normal" style={{ color: MUTED }}>
-                          <span style={{ color: "#8E9A80" }} className="shrink-0">{row.icon}</span>
+                        <span className="flex items-center gap-2 font-normal text-muted-charcoal">
+                          <span className="shrink-0 text-[#8E9A80]">{row.icon}</span>
                           {row.label}
                         </span>
-                        <span className="font-bold whitespace-nowrap ml-3" style={{ color: TEXT }}>
+                        <span className="font-bold whitespace-nowrap ml-3 text-charcoal">
                           Rs {row.value}
                         </span>
                       </div>
@@ -289,10 +180,7 @@ export function PlotCarousel() {
                   <Link
                     href="/contact"
                     onClick={(e) => e.stopPropagation()}
-                    className="w-full mt-4 py-2.5 sm:py-3 px-4 rounded-xl font-bold text-xs sm:text-sm text-white flex items-center justify-center gap-1.5 transition-all duration-200 shadow-[0_4px_14px_rgba(67,97,43,0.35)] hover:shadow-[0_6px_20px_rgba(67,97,43,0.45)] active:scale-[0.98] group/btn"
-                    style={{ background: GREEN }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#2F441E"; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = GREEN; }}
+                    className="w-full mt-4 py-2.5 sm:py-3 px-4 rounded-xl font-bold text-xs sm:text-sm text-white flex items-center justify-center gap-1.5 transition-all duration-200 shadow-[0_4px_14px_rgba(67,97,43,0.35)] hover:shadow-[0_6px_20px_rgba(67,97,43,0.45)] active:scale-[0.98] group/btn bg-forest-green hover:bg-[#2F441E]"
                   >
                     <span>Contact Us</span>
                     <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
@@ -310,16 +198,7 @@ export function PlotCarousel() {
           type="button"
           onClick={handlePrev}
           aria-label="Previous plot plan"
-          className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-all duration-200 active:scale-90 cursor-pointer border"
-          style={{ background: "#FAF9F7", color: GREEN, borderColor: `${GREEN}33` }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = GREEN;
-            (e.currentTarget as HTMLButtonElement).style.color = "#fff";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = "#FAF9F7";
-            (e.currentTarget as HTMLButtonElement).style.color = GREEN;
-          }}
+          className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-all duration-200 active:scale-90 cursor-pointer border border-forest-green/20 bg-[#FAF9F7] text-forest-green hover:bg-forest-green hover:text-white"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -331,11 +210,11 @@ export function PlotCarousel() {
               key={i}
               onClick={() => setActiveIndex(i)}
               aria-label={`Plot ${i + 1}`}
-              className="rounded-full transition-all duration-300 cursor-pointer"
+              className={`rounded-full transition-all duration-300 cursor-pointer ${
+                i === activeIndex ? "w-[24px] bg-forest-green" : "w-[8px] bg-forest-green/40"
+              }`}
               style={{
-                width:      i === activeIndex ? "24px" : "8px",
                 height:     "8px",
-                background: i === activeIndex ? GREEN : `${GREEN}40`,
               }}
             />
           ))}
@@ -345,16 +224,7 @@ export function PlotCarousel() {
           type="button"
           onClick={handleNext}
           aria-label="Next plot plan"
-          className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-all duration-200 active:scale-90 cursor-pointer border"
-          style={{ background: "#FAF9F7", color: GREEN, borderColor: `${GREEN}33` }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = GREEN;
-            (e.currentTarget as HTMLButtonElement).style.color = "#fff";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.background = "#FAF9F7";
-            (e.currentTarget as HTMLButtonElement).style.color = GREEN;
-          }}
+          className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-all duration-200 active:scale-90 cursor-pointer border border-forest-green/20 bg-[#FAF9F7] text-forest-green hover:bg-forest-green hover:text-white"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
